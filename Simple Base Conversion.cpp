@@ -12,30 +12,28 @@ string toHex(int n){
     if(n==11){return "B";}
     if(n==10){return "A";}
     
-    
-    if(n/16==15){return "F"+toHex(n%16);}
-    else if(n/16==14){return "E"+toHex(n%15);}
-    else if(n/16==13){return "D"+toHex(n%14);}
-    else if(n/16==12){return "C"+toHex(n%13);}
-    else if(n/16==11){return "B"+toHex(n%12);}
-    else if(n/6==10){return "A"+toHex(n%11);}
-    else{ return to_string(n/16)+toHex(n%16);}
+    if(n%16==15){return toHex(n/16)+"F";}
+    else if(n%16==14){return toHex(n/16)+"E";}
+    else if(n%16==13){return toHex(n/16)+"D";}
+    else if(n%16==12){return toHex(n/16)+"C";}
+    else if(n%16==11){return toHex(n/16)+"B";}
+    else if(n%16==10){return toHex(n/16)+"A";}
+    else{ return toHex(n/16)+to_string(n%16);}
 }
 
 int main()
 {
-    string n="";
-    while(n!="-1"){
+    string n=" ";
+    while(n.at(0)!='-'){
         cin>>n;
-        if(stoi(n,nullptr,0)==-1){
-            break;
-            }
+        if(n.at(0)=='-'){
+            break;    
+        }
         if(n.length()>1&&n.at(1)=='x'){
-            cout<<stoi(n,nullptr,0)<<endl;
-            }
+             cout<<stoi(n,nullptr,16)<<endl;
+        }
         else{
-            cout<<hex<<n<<endl;
-        // cout<<"0x"<<itoa (n,buffer,16)<<endl;
+            cout<<"0x"<<toHex(stoi(n,nullptr,0))<<endl;
         }
     }
     return 0;
