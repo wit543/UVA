@@ -26,14 +26,22 @@ int main(){
     }
     int out =0;
     for(int i=1;i<=n;i++){
+
+        queue<int> q;
         if(!xVisit[i]) {
             out++;
-            xVisit[i]=true;
-            while (true) {
-                if(gaphX[i].empty())break;
-                int p = gaphX[i].back();
-                gaphX[i].pop_back();
-                xVisit[p]=true;
+            q.push(i);
+            while (!q.empty()) {
+                int ix = q.front();
+                q.pop();
+
+                for (int j = 0; j < gaphX[ix].size(); j++) {
+                    if (!xVisit[gaphX[ix][j]]) {
+                        xVisit[gaphX[ix][j]] = true;
+                        q.push(gaphX[ix][j]);
+                    }
+
+                }
             }
         }
     }
