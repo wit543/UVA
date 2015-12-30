@@ -10,8 +10,13 @@ using namespace std;
 vector<int> gaphX[100001];
 bool xVisit[100001];
 int main(){
+
     int n,r;
     cin>>n>>r;
+    for(int i=1;i<=n;i++){
+        gaphX[i]= *new vector<int>();
+        xVisit[i]=false;
+    }
     for(int i=1;i<=r;i++){
         int u,v;
         cin>>u>>v;
